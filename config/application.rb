@@ -15,5 +15,9 @@ module ValuconTestTask
     Dir["#{Rails.root}/lib/**/*.rb"].each { |file| require file }
 
     config.time_zone = 'Vladivostok'
+
+    config.auth = {
+      min_password_length: 8
+    }
   end
 end
