@@ -19,18 +19,11 @@
 #  fk_rails_4d2a9e4d7e  (user_id => users.id)
 #
 
-class Task < ApplicationRecord
-  STATES = %w( new started finished ).freeze
-  belongs_to :user
+require 'rails_helper'
 
-  validates :name, presence: true
-  validates :state, presence: true, inclusion: {in: STATES}
-
-  after_initialize :set_defaults
-
-  private
-
-  def set_defaults
-    self.state = 'new' unless state?
-  end
+RSpec.describe Task, type: :model do
+  it { is_expected.to belong_to(:user) }
+  it { is_expected.to validate_presence_of(:name) }
+  it { is_expected.to validate_presence_of(:state) }
+  it { is_expected.to validate_inclusion_of(:state).in_array(described_class::STATES) }
 end

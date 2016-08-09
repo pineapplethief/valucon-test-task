@@ -4,7 +4,7 @@ RSpec.configure do |config|
 
   # truncation gives cleaner starting state for the database...
   config.before(:suite) do
-    DatabaseCleaner.clean_with(:truncation), except: [ActiveRecord::InternalMetadata.table_name]
+    DatabaseCleaner.clean_with(:truncation, except: [ActiveRecord::InternalMetadata.table_name])
   end
 
   # Transactions are the fastest, each example is wrapped into transaction, which is

@@ -16,6 +16,7 @@ gem 'show_data', require: false
 # Front-end gems
 gem 'jquery-rails'
 gem 'sass-rails', '~> 5.0'
+gem 'slim-rails'
 gem 'uglifier', '>= 1.3.0'
 
 group :development do
@@ -39,5 +40,6 @@ end
 
 group :test do
   gem 'database_cleaner', github: 'pschambacher/database_cleaner', branch: 'rails5.0'
+  gem 'shoulda-matchers', '~> 3.1'
   gem 'simplecov', require: false
 end
