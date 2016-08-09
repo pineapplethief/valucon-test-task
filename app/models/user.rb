@@ -7,7 +7,7 @@ class User < ApplicationRecord
   validates :email, uniqueness: true, format: {with: /@/}, if: :email_changed?
 
   validates :password, presence: true, confirmation: true, if: :password_required?
-  validates :password, length: {within: Rails.configuration.auth[:min_password_length]}, allow_blank: true
+  validates :password, length: {within: Rails.configuration.auth[:password_lengths]}, allow_blank: true
 
   validates :role, presence: true, inclusion: [in: ROLES]
 

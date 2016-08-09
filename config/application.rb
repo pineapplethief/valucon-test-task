@@ -17,7 +17,7 @@ module ValuconTestTask
     config.time_zone = 'Vladivostok'
 
     config.auth = {
-      min_password_length: 8
+      password_lengths: 8..32
     }
   end
 end
