@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   ROLES = %w(user admin).freeze
 
-  has_many :tasks, dependend: :destroy
+  has_many :tasks, dependent: :destroy
 
   validates :email, presence: true
   validates :email, uniqueness: true, format: {with: /@/}, if: :email_changed?
