@@ -1,25 +1,19 @@
-# SQLite version 3.x
-#   gem install sqlite3
-#
-#   Ensure the SQLite 3 gem is defined in your Gemfile
-#   gem 'sqlite3'
-#
-default: &default
-  adapter: sqlite3
-  pool: 5
+development: &default
+  adapter: postgresql
+  database: valucon_dev
+  encoding: utf8
+  min_messages: warning
+  pool: <%= Integer(ENV.fetch('DB_POOL', 25)) %>
+  reaping_frequency: <%= Integer(ENV.fetch('DB_REAPING_FREQUENCY', 10)) %>
   timeout: 5000
 
-development:
+test: &test
   <<: *default
-  database: db/development.sqlite3
+  database: valucon_test
 
-# Warning: The database defined as "test" will be erased and
-# re-generated from your development database when you run "rake".
-# Do not set this db to the same as development or production.
-test:
-  <<: *default
-  database: db/test.sqlite3
-
-production:
-  <<: *default
-  database: db/production.sqlite3
+production: &deploy
+  encoding: utf8
+  min_messages: warning
+  pool: <%= [Integer(ENV.fetch('MAX_THREADS', 25)), Integer(ENV.fetch('DB_POOL', 25))].max %>
+  timeout: 5000
+  url:  <%= ENV.fetch('DATABASE_URL', '') %>
