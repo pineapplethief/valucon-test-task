@@ -11,5 +11,9 @@ module ValuconTestTask
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
+
+    Dir["#{Rails.root}/lib/**/*.rb"].each { |file| require file }
+
+    config.time_zone = 'Vladivostok'
   end
 end
