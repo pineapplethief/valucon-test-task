@@ -7,6 +7,7 @@ gem 'pg'
 gem 'puma', '~> 3.0'
 
 gem 'bcrypt', '~> 3.1.7'
+gem 'dotenv-rails'
 gem 'fast_blank'
 gem 'passenger', '>= 5.0.25', require: 'phusion_passenger/rack_handler'
 gem 'pry-rails'
@@ -25,8 +26,6 @@ group :development do
   gem 'capistrano-rails-console'
   gem 'capistrano-rvm'
   gem 'capistrano-bundler'
-  gem 'capistrano3-nginx'
-  gem 'capistrano-passenger'
   gem 'listen', '~> 3.0.5'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
@@ -35,7 +34,6 @@ end
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
-  gem 'dotenv-rails'
   gem 'rspec-rails', '~> 3.5'
 end
 
