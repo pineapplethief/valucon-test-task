@@ -35,4 +35,11 @@ end
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+  gem 'dotenv-rails'
+  gem 'rspec-rails', '~> 3.5'
+end
+
+group :test do
+  gem 'database_cleaner', github: 'pschambacher/database_cleaner', branch: 'rails5.0'
+  gem 'simplecov', require: false
 end
