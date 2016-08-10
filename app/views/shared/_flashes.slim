@@ -1,0 +1,7 @@
+.row
+  .flashes-container.col-sm-5.center-block
+    - flash.each do |key, message|
+      - if message.present?
+        .alert.alert-dismissible class=flash_class(key) role="alert"
+          = close_button_tag
+          p= message
