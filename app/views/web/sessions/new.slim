@@ -1,0 +1,6 @@
+.row
+  .col-sm-12.col-lg-4.center-block
+    = simple_form_for @user, as: :user, url: user_sign_in_path, method: :post do |f|
+      = f.input :email
+      = f.input :password
+      = f.button :submit

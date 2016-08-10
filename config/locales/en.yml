@@ -20,4 +20,14 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  sign_in: Sign In
+  sign_out: Sign Out
+  all_tasks: All Tasks
+  dashboard: Dashboard
+
+  signed_in: You successfully signed in
+  signed_out: You successfully signed out
+  wrong_email_or_password: Wrong user email or password
+  not_authenticated: You must be authenticated to access this page
+
+  application_title: Tasks Manager App

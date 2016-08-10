@@ -1,0 +1,28 @@
+nav.navbar.navbar-default.navbar-fixed-top
+  .container
+    .navbar-header
+      button.navbar-toggle.collapsed[type="button"
+                                     data-toggle="collapse"
+                                     data-target="#navbar"
+                                     aria-expanded="false"
+                                     aria-controls="navbar"]
+        span.sr-only Toggle navigation
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+
+      = link_to t(:application_title), root_path, class: 'navbar-brand'
+
+    #navbar.collapse.navbar-collapse
+      ul.nav.navbar-nav
+        li
+          = link_to t(:all_tasks), root_path
+      ul.nav.navbar-nav.navbar-right
+        - if user_signed_in?
+          li
+            = link_to t(:dashboard), '#'
+          li
+            = link_to t(:sign_out), user_sign_out_path, method: :delete
+        - else
+          li
+            = link_to t(:sign_in), new_user_sign_in_path

@@ -1,5 +1,5 @@
 module Web
-  class WelcomeController < BaseController
+  class TasksController < BaseController
     def index
     end
   end

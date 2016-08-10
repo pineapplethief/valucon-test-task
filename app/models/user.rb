@@ -28,6 +28,14 @@ class User < ApplicationRecord
 
   after_initialize :set_defaults
 
+  def self.guest
+    new
+  end
+
+  def guest?
+    !persisted?
+  end
+
   private
 
   def set_defaults
