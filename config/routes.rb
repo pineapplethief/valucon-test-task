@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
-  root 'tasks#index'
 
-  resources :tasks, only: [:index]
+  scope module: :web do
+    root 'welcome#index'
+
+    resources :tasks, only: [:index]
+
+    namespace :admin do
+
+    end
+  end
 end

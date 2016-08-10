@@ -25,5 +25,6 @@ RSpec.describe Task, type: :model do
   it { is_expected.to belong_to(:user) }
   it { is_expected.to validate_presence_of(:name) }
   it { is_expected.to validate_presence_of(:state) }
+
   it { is_expected.to validate_inclusion_of(:state).in_array(described_class::STATES) }
 end
