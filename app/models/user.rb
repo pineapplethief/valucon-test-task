@@ -28,6 +28,10 @@ class User < ApplicationRecord
 
   after_initialize :set_defaults
 
+  def self.roles
+    ROLES
+  end
+
   def self.guest
     new
   end
