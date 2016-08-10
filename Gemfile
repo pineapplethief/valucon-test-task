@@ -9,6 +9,7 @@ gem 'puma', '~> 3.0'
 gem 'bcrypt', '~> 3.1.7'
 gem 'dotenv-rails'
 gem 'fast_blank'
+gem 'ffaker', require: false
 gem 'passenger', '>= 5.0.25', require: 'phusion_passenger/rack_handler'
 gem 'pry-rails'
 gem 'show_data', require: false

@@ -28,6 +28,10 @@ class Task < ApplicationRecord
 
   after_initialize :set_defaults
 
+  def self.states
+    STATES
+  end
+
   private
 
   def set_defaults
