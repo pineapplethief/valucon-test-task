@@ -16,13 +16,13 @@ nav.navbar.navbar-default.navbar-fixed-top
     #navbar.collapse.navbar-collapse
       ul.nav.navbar-nav
         li
-          = link_to t(:all_tasks), root_path
+          = link_to t(:all_tasks), tasks_path
       ul.nav.navbar-nav.navbar-right
         - if user_signed_in?
           li
-            = link_to t(:dashboard), '#'
+            = link_to t(:dashboard), dashboard_root_path
           li
-            = link_to t(:sign_out), user_sign_out_path, method: :delete
+            = link_to t(:sign_out), user_sign_out_path, method: :delete, class: 'qa-sign-out-link'
         - else
           li
-            = link_to t(:sign_in), new_user_sign_in_path
+            = link_to t(:sign_in), new_user_sign_in_path, class: 'qa-sign-in-link'

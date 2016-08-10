@@ -2,6 +2,7 @@ module Web
   class BaseController < ApplicationController
     helper_method :current_user
     helper_method :user_signed_in?
+    helper_method :sign_in
 
     protected
 
@@ -24,6 +25,12 @@ module Web
 
     def user_signed_in?
       !current_user.guest?
+    end
+
+    def sign_in(user)
+      return if user.guest?
+      session[:current_user_id] = @user.id
+      flash[:notice] = t(:signed_in)
     end
 
   end

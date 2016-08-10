@@ -7,8 +7,8 @@ module Web
     def create
       @user = User.find_by(email: user_params[:email])
       if @user && @user.authenticate(user_params[:password])
-        session[:current_user_id] = @user.id
-        redirect_to root_path
+        sign_in(@user)
+        redirect_to dashboard_root_path
       else
         @user = User.new
         flash[:alert] = t(:wrong_email_or_password)
