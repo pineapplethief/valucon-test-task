@@ -1,19 +1,11 @@
-require 'ffaker'
+require Rails.root.join('spec', 'support', 'helpers', 'fake_data_generator')
 
 namespace :generate do
-  desc 'Generates fake tasks for different users'
+  desc 'Generates fake data: users with tasks'
   task :fake_data, [:number_of_users, :tasks_per_user] => :environment do |t, args|
-    number_of_users = (args[:number_of_users] || 10).to_i
-    tasks_per_user  = (args[:tasks_per_user]  || 10).to_i
+    number_of_users = (args[:number_of_users] || 5).to_i
+    tasks_per_user  = (args[:tasks_per_user]  || 5).to_i
 
-    number_of_users.times do
-      user = User.create!(email: FFaker::Internet.email,
-                          password: FFaker::Internet.password)
-      tasks_per_user.times do
-        user.tasks.create(name: FFaker::Food.fruit,
-                          description: FFaker::HipsterIpsum.paragraph,
-                          state: Task.states[rand(Task.states.size)])
-      end
-    end
+    FakeDataGenerator.generate_fake_data(number_of_users: number_of_users, tasks_per_user: tasks_per_user)
   end
 end
