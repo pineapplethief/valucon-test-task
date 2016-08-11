@@ -1,9 +1,13 @@
 module Web
   class BaseController < ApplicationController
+    include Pundit
+
     helper_method :current_user
     helper_method :user_signed_in?
     helper_method :sign_in
     helper_method :present
+
+    rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
     protected
 
@@ -49,6 +53,18 @@ module Web
       presenter = klass.new(model, view_context)
 
       block_given? ? yield(presenter) : presenter
+    end
+
+    def user_not_authorized(exception)
+      policy_name = exception.policy.class.to_s.underscore
+
+      flash[:error] = t("#{policy_name}.#{exception.query}", scope: :pundit, default: :unauthorized_access)
+
+      redirect_to_back_or_root
+    end
+
+    def redirect_to_back_or_root
+      redirect_to(request.referrer || root_path)
     end
 
   end

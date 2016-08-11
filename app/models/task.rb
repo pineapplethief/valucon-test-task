@@ -27,6 +27,7 @@ class Task < ApplicationRecord
   validates :state, presence: true, inclusion: {in: STATES}
 
   scope :ordered, -> { order(created_at: :desc) }
+  scope :for_user, ->(user) { where(user: user) }
 
   after_initialize :set_defaults
 
