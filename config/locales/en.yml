@@ -32,3 +32,16 @@ en:
 
   application_title: Tasks Manager App
 
+  all_tasks_heading: All Tasks
+
+  task_id: "Task #%{id}"
+
+  time:
+    formats:
+      default: "%e %b %Y, %a %H:%M:%S"
+
+  activerecord:
+    attributes:
+      task:
+        name: Name
+        user: Assigned to

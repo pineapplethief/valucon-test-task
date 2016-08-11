@@ -19,6 +19,7 @@
 #  fk_rails_4d2a9e4d7e  (user_id => users.id)
 #
 
+
 RSpec.describe Task, type: :model do
   it { is_expected.to belong_to(:user) }
   it { is_expected.to validate_presence_of(:name) }
