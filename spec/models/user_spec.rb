@@ -14,6 +14,7 @@
 #  index_users_on_email  (email) UNIQUE
 #
 
+
 RSpec.describe User, type: :model do
   it { is_expected.to have_many(:tasks).dependent(:destroy) }
   it { is_expected.to validate_presence_of(:email) }

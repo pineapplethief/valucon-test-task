@@ -1,0 +1,8 @@
+li.list-group-item.qa-task
+  .row
+    .col-sm-12
+      h4.qa-task-id
+        = t(:task_id, id: task.id)
+      = task.render_list_attribute(:created_at)
+      = task.render_list_attribute(:name)
+      = task.render_list_attribute(:user)

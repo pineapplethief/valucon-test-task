@@ -21,12 +21,16 @@ class User < ApplicationRecord
 
   has_many :tasks, dependent: :destroy
 
-  validates :email, presence: true
-  validates :email, uniqueness: true, format: {with: /@/}, if: :email_changed?
+  validates :email, presence: true, uniqueness: true
+  validates :email, format: {with: /@/}, if: :email_changed?
 
   validates :role, presence: true, inclusion: {in: ROLES}
 
   after_initialize :set_defaults
+
+  def self.roles
+    ROLES
+  end
 
   def self.guest
     new
@@ -34,6 +38,18 @@ class User < ApplicationRecord
 
   def guest?
     !persisted?
+  end
+
+  def user?
+    role == 'user'
+  end
+
+  def admin?
+    role == 'admin'
+  end
+
+  def to_s
+    email
   end
 
   private

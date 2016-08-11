@@ -9,6 +9,7 @@ gem 'puma', '~> 3.0'
 gem 'bcrypt', '~> 3.1.7'
 gem 'dotenv-rails'
 gem 'fast_blank'
+gem 'ffaker', require: false
 gem 'passenger', '>= 5.0.25', require: 'phusion_passenger/rack_handler'
 gem 'pry-rails'
 gem 'show_data', require: false
@@ -35,8 +36,8 @@ group :development do
 end
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+  gem 'factory_girl_rails'
   gem 'rspec-rails', '~> 3.5'
 end
 

@@ -26,7 +26,13 @@ class Task < ApplicationRecord
   validates :name, presence: true
   validates :state, presence: true, inclusion: {in: STATES}
 
+  scope :ordered, -> { order(created_at: :desc) }
+
   after_initialize :set_defaults
+
+  def self.states
+    STATES
+  end
 
   private
 
