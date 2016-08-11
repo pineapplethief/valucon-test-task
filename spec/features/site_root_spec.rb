@@ -1,7 +1,3 @@
-def task_element
-  first('.qa-task')
-end
-
 RSpec.describe 'Tasks index page on site root' do
   context 'when user navigates to the site root' do
     context 'and there are tasks by different users' do
@@ -21,6 +17,8 @@ RSpec.describe 'Tasks index page on site root' do
       task = create(:task, name: 'Task name', description: 'Lorem Ipsum', state: 'new', user: user)
 
       visit root_path
+
+      task_element = first('.qa-task')
 
       expect(task_element).to have_css('.qa-task-id', text: /#{task.id}{1}/)
       expect(task_element).to have_css('.qa-task-created_at', text: l(task.created_at))

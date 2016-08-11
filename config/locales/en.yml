@@ -33,12 +33,22 @@ en:
   application_title: Tasks Manager App
 
   all_tasks_heading: All Tasks
+  user_tasks_heading: Your Tasks
 
   task_id: "Task #%{id}"
 
   time:
     formats:
       default: "%e %b %Y, %a %H:%M:%S"
+
+  task:
+    states:
+      new: New
+      started: Started
+      finished: Finished
+
+  pundit:
+    unauthorized_access: You are not authorized to perform this action
 
   activerecord:
     attributes:

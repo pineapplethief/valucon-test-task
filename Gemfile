@@ -12,6 +12,7 @@ gem 'fast_blank'
 gem 'ffaker', require: false
 gem 'passenger', '>= 5.0.25', require: 'phusion_passenger/rack_handler'
 gem 'pry-rails'
+gem 'pundit'
 gem 'show_data', require: false
 gem 'simple_form'
 

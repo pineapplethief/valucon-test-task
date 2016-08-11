@@ -1,1 +1,4 @@
-= render 'tasks', tasks: @tasks, heading: t(:all_tasks_heading)
+h2= t(:all_tasks_heading)
+
+ul.list-group
+  = render @tasks

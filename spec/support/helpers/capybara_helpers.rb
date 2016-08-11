@@ -38,9 +38,10 @@ module CapybaraHelpers
     end
   end
 
-  def create_and_sign_in_user(email: 'user@example.com', password: 'password')
-    User.create!(email: email, password: password)
+  def create_and_sign_in_user(email: 'user@example.com', password: 'password', role: 'user')
+    user = User.create!(email: email, password: password, role: role)
     ensure_path new_user_sign_in_path
     submit_sign_in_form(email: email, password: password)
+    user
   end
 end
