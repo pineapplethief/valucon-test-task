@@ -2,7 +2,13 @@ language: ruby
 rvm:
   - 2.3.1
 
+cache: bundler
+sudo: false
+
 before_install:
   - gem update --system
   - bundle install
-  - bundle exec rake test:db:prepare
+
+script:
+  - bundle exec rake db:test:prepare
+  - bundle exec rspec
