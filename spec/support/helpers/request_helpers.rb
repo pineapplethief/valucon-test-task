@@ -7,4 +7,8 @@ module RequestHelpers
       }
     }
   end
+
+  def json
+    HashWithIndifferentAccess.new(JSON.parse(response.body))
+  end
 end

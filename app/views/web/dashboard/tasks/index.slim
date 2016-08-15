@@ -1,4 +1,4 @@
 h2= t(:user_tasks_heading)
 
 ul.list-group
-  = render @tasks
+  = render partial: 'index_task', layout: 'task', collection: @tasks, as: :task

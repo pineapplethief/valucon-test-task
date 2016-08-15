@@ -4,15 +4,15 @@ gem 'rails', '~> 5.0.0'
 
 gem 'pg'
 
-gem 'puma', '~> 3.0'
+gem 'passenger', '>= 5.0.25', require: 'phusion_passenger/rack_handler'
 
+gem 'aasm'
 gem 'bcrypt', '~> 3.1.7'
 gem 'carrierwave'
 gem 'dotenv-rails'
 gem 'fast_blank'
 gem 'ffaker', require: false
 gem 'mini_magick'
-gem 'passenger', '>= 5.0.25', require: 'phusion_passenger/rack_handler'
 gem 'pry-rails'
 gem 'pundit'
 gem 'show_data', require: false
@@ -47,6 +47,7 @@ end
 group :test do
   gem 'capybara'
   gem 'database_cleaner', github: 'pschambacher/database_cleaner', branch: 'rails5.0'
+  gem 'pundit-matchers', '~> 1.1.0'
   gem 'shoulda-matchers', '~> 3.1'
   gem 'simplecov', require: false
 end

@@ -28,6 +28,6 @@ FactoryGirl.define do
 
     name { FFaker::Food.fruit }
     description { FFaker::HipsterIpsum.paragraph }
-    state { Task.states[rand(Task.states.size)] }
+    state { Task::STATES[rand(Task::STATES.size)] }
   end
 end

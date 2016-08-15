@@ -128,7 +128,7 @@ RSpec.describe 'Dashboard Tasks CRUD', type: :request do
           it 'sends file' do
             get "/dashboard/tasks/#{task.id}/download_attachment"
 
-            expect(response.body).to eq(IO.binread(fixture_image_path))
+            expect(response.headers["Content-Transfer-Encoding"]).to eq('binary')
           end
         end
 
@@ -168,11 +168,58 @@ RSpec.describe 'Dashboard Tasks CRUD', type: :request do
         end
       end
 
-      context "and when user doesn't own this task" do
+      context "when user doesn't own this task" do
         let(:task) { create(:task, user: create(:user)) }
 
         it 'returns :forbidden status' do
           delete "/dashboard/tasks/#{task.id}"
+
+          expect(response).to have_http_status(:forbidden)
+        end
+      end
+    end
+
+    describe 'PUT /dashboard/tasks/:id/change_state' do
+      context 'when user owns this task' do
+        let(:task) { create(:task, user: user, state: 'new') }
+
+        context 'when event is defined' do
+          context 'and when event is allowed' do
+            let(:event) { 'start' }
+
+            it 'returns json with new state' do
+              put "/dashboard/tasks/#{task.id}/change_state", params: {event: event}
+
+              expect(json[:status]).to eq(t('task.states.started'))
+            end
+          end
+
+          context 'and when event is not allowed' do
+            let(:event) { 'finish' }
+
+            it 'returns json with error' do
+              put "/dashboard/tasks/#{task.id}/change_state", params: {event: event}
+
+              expect(json).to have_key(:error)
+            end
+          end
+        end
+
+        context 'when event is not defined' do
+          let(:event) { 'strange_brew' }
+          it 'returns json with error' do
+            put "/dashboard/tasks/#{task.id}/change_state", params: {event: event}
+
+            expect(json).to have_key(:error)
+          end
+        end
+      end
+
+      context "when user doesn't own this task" do
+        let(:task) { create(:task, user: create(:user)) }
+
+        it 'returns :forbidden status' do
+          put "/dashboard/tasks/#{task.id}/change_state"
 
           expect(response).to have_http_status(:forbidden)
         end

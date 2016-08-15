@@ -7,6 +7,9 @@ module ApplicationHelper
     end
   end
 
+  def task_button_class()
+  end
+
   def icon_tag(name)
     content_tag(:span, nil, class: "glyphicon glyphicon-#{name}", aria: {hidden: "true"})
   end

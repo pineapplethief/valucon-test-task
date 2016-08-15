@@ -21,8 +21,7 @@ class BasePresenter
   def method_missing(method, *args)
     super unless model.respond_to?(method)
 
-    value = model.send(method, *args)
-    value
+    model.send(method, *args)
   end
 
   def respond_to_missing?(method_name, include_private = false)
@@ -36,7 +35,11 @@ class BasePresenter
   end
 
   def ==(other)
-    other.respond_to?(:present) ? model == other.model : model == other
+    other.respond_to?(:presented?) ? model == other.model : model == other
+  end
+
+  def presented?
+    true
   end
 
   # cleaner inspect output

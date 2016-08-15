@@ -45,6 +45,16 @@ module Web
         end
       end
 
+      def destroy
+        @task = find_task
+        authorize @task
+
+        @task.destroy
+        flash[:notice] = t(:task_destroyed)
+
+        redirect_to dashboard_root_path
+      end
+
       def download_attachment
         @task = find_task
         authorize @task
@@ -58,14 +68,22 @@ module Web
         end
       end
 
-      def destroy
+      def change_state
         @task = find_task
-        authorize @task
+        authorize @task, :edit?
 
-        @task.destroy
-        flash[:notice] = t(:task_destroyed)
+        event = params[:event].to_sym
+        events = Task.aasm.events.map(&:name)
 
-        redirect_to dashboard_root_path
+        unless event.in?(events)
+          render json: {error: 'Wrong event name'} and return
+        end
+
+        if @task.send(:"#{event}!")
+          render json: {status: present(@task).state}
+        else
+          render json: {error: 'Wrong state transition'}
+        end
       end
 
       private

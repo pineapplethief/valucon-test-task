@@ -20,27 +20,36 @@
 #
 
 class Task < ApplicationRecord
+  include AASM
+
   STATES = %w( new started finished ).freeze
+
+  aasm column: :state, whiny_transitions: false do
+    state :new, initial: true
+    state :started
+    state :finished
+
+    event :start do
+      transitions from: :new, to: :started
+    end
+
+    event :reset do
+      transitions from: [:started, :finished], to: :new
+    end
+
+    event :finish do
+      transitions from: :started, to: :finished
+    end
+  end
 
   mount_uploader :file, TaskFileUploader
 
   belongs_to :user
 
   validates :name, presence: true
-  validates :state, presence: true, inclusion: {in: STATES}
+  validates :state, presence: true
 
   scope :ordered, -> { order(created_at: :desc) }
   scope :for_user, ->(user) { where(user: user) }
 
-  after_initialize :set_defaults
-
-  def self.states
-    STATES
-  end
-
-  private
-
-  def set_defaults
-    self.state = 'new' unless state?
-  end
 end
