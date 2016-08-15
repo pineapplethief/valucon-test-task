@@ -7,7 +7,11 @@ Rails.application.routes.draw do
 
     namespace :dashboard do
       root 'tasks#index', as: :root
-      resources :tasks
+      resources :tasks do
+        member do
+          get :download_attachment
+        end
+      end
     end
 
     get 'sign_in' => 'sessions#new', as: :new_user_sign_in

@@ -21,6 +21,9 @@
 
 class Task < ApplicationRecord
   STATES = %w( new started finished ).freeze
+
+  mount_uploader :file, TaskFileUploader
+
   belongs_to :user
 
   validates :name, presence: true

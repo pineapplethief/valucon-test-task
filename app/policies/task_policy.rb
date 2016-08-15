@@ -30,6 +30,10 @@ class TaskPolicy < ApplicationPolicy
     user_is_admin_or_owns_task
   end
 
+  def download_attachment?
+    user_is_admin_or_owns_task
+  end
+
   private
 
   def user_is_admin_or_owns_task

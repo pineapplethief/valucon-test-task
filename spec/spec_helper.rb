@@ -1,7 +1,8 @@
 require 'simplecov'
 SimpleCov.start 'rails' do
   # no need to test those, just some extensions for better logs in development
-  add_filter '/lib/logging'
+  add_filter 'lib/logging'
+  add_filter 'lib/carrierwave/mini_magick.rb'
   # auto-generated files with no code of value here
   add_filter 'app/jobs/application_job.rb'
   add_filter 'app/mailers/application_mailer.rb'

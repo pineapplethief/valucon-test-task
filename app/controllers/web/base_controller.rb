@@ -12,10 +12,10 @@ module Web
     protected
 
     def authenticate_user!
-      unless user_signed_in?
-        flash[:alert] = t(:not_authenticated)
-        redirect_to new_user_sign_in_path, status: :unauthorized
-      end
+      return true if user_signed_in?
+
+      flash[:alert] = t(:not_authenticated)
+      redirect_to new_user_sign_in_path, status: :unauthorized
     end
 
     def current_user
