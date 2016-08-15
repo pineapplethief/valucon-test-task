@@ -14,6 +14,7 @@
 #  index_users_on_email  (email) UNIQUE
 #
 
+
 require 'ffaker'
 
 FactoryGirl.define do

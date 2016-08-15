@@ -12,11 +12,13 @@ li.list-group-item.qa-task
             = link_to dashboard_task_path(task.id), method: :delete, class: 'task-action-link' do
               span.task-action-link--text= t(:delete)
               = icon_tag('remove')
-
+      - if task.file? && task.file.image?
+        = image_tag task.file_url
       = task.render_list_attribute(:created_at)
       = task.render_list_attribute(:state)
       = task.render_list_attribute(:name)
       = task.render_description
       - if current_user.admin?
         = task.render_list_attribute(:user)
-
+      - if task.file? && !task.file.image?
+        = link_to 'Download attachment', download_attachment_dashboard_task_path(task.id)

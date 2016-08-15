@@ -19,6 +19,7 @@
 #  fk_rails_4d2a9e4d7e  (user_id => users.id)
 #
 
+
 require 'ffaker'
 
 FactoryGirl.define do

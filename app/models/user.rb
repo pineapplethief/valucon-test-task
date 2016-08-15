@@ -14,6 +14,7 @@
 #  index_users_on_email  (email) UNIQUE
 #
 
+
 class User < ApplicationRecord
   ROLES = %w(guest user admin).freeze
 

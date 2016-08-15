@@ -16,6 +16,7 @@ ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
   config.include AbstractController::Translation
+  config.include CarrierwaveHelpers
   config.include CapybaraHelpers, type: :feature
   config.include FakeDataGenerator, type: :feature
   config.include RequestHelpers, type: :request

@@ -7,9 +7,11 @@ gem 'pg'
 gem 'puma', '~> 3.0'
 
 gem 'bcrypt', '~> 3.1.7'
+gem 'carrierwave'
 gem 'dotenv-rails'
 gem 'fast_blank'
 gem 'ffaker', require: false
+gem 'mini_magick'
 gem 'passenger', '>= 5.0.25', require: 'phusion_passenger/rack_handler'
 gem 'pry-rails'
 gem 'pundit'

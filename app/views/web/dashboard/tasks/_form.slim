@@ -1,6 +1,13 @@
 = simple_form_for [:dashboard, task], html: {class: 'qa-sign-in-form'} do |f|
   = f.input :name
   = f.input :description
+
+  = image_tag(task.file_url) if task.file? && task.file.image?
+  = f.input :file
+  = f.input :file_cache, as: :hidden
+  - if task.file?
+    = f.input :remove_file, as: :boolean
+
   - if current_user.admin?
     = f.input :user_id, as: :select,
                         collection: User.all.map { |user| [user.to_s, user.id] },

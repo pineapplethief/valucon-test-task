@@ -45,6 +45,19 @@ module Web
         end
       end
 
+      def download_attachment
+        @task = find_task
+        authorize @task
+
+        if @task.file? && @task.file.path.present?
+          send_file(@task.file.path, disposition: 'attachment', url_based_filename: false)
+        else
+          flash[:error] = t(:uploaded_file_not_found)
+
+          redirect_to request.referrer || root_path
+        end
+      end
+
       def destroy
         @task = find_task
         authorize @task
@@ -65,6 +78,9 @@ module Web
         params_to_permit = [
           :name,
           :description,
+          :file,
+          :file_cache,
+          :remove_file,
           :state
         ]
         params_to_permit << :user_id if current_user.admin?

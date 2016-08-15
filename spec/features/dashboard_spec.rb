@@ -39,7 +39,6 @@ RSpec.describe 'User Dashboard' do
     let(:user) { create_and_sign_in_user(role: 'admin') }
 
     scenario 'he can see all user tasks' do
-      puts "user = #{user.inspect}"
       generate_fake_data(number_of_users: 3, tasks_per_user: 3)
       3.times { create(:task, user: user) }
 

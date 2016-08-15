@@ -120,6 +120,42 @@ RSpec.describe 'Dashboard Tasks CRUD', type: :request do
       end
     end
 
+    describe 'GET /tasks/:id/download_attachment' do
+      context 'when user owns this task' do
+        let(:task) { create(:task, user: user, file: File.open(fixture_image_path)) }
+
+        context 'and there is file uploaded for this task' do
+          it 'sends file' do
+            get "/dashboard/tasks/#{task.id}/download_attachment"
+
+            expect(response.body).to eq(IO.binread(fixture_image_path))
+          end
+        end
+
+        context 'and there is NO file uploaded for this task' do
+          let(:task) { create(:task, user: user) }
+
+          it 'shows error and redirects' do
+            get "/dashboard/tasks/#{task.id}/download_attachment"
+
+            expect(flash[:error]).to eq(t(:uploaded_file_not_found))
+
+            expect(response).to redirect_to(request.referrer || root_path)
+          end
+        end
+      end
+
+      context "and when user doesn't own this task" do
+        let(:task) { create(:task, user: create(:user)) }
+
+        it 'returns :forbidden status' do
+          get "/dashboard/tasks/#{task.id}/download_attachment"
+
+          expect(response).to have_http_status(:forbidden)
+        end
+      end
+    end
+
     describe 'DELETE /tasks/:id' do
       context 'when user owns this task' do
         let(:task) { create(:task, user: user) }
@@ -131,6 +167,7 @@ RSpec.describe 'Dashboard Tasks CRUD', type: :request do
           expect(response).to redirect_to('/dashboard')
         end
       end
+
       context "and when user doesn't own this task" do
         let(:task) { create(:task, user: create(:user)) }
 

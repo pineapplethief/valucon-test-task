@@ -1,0 +1,42 @@
+Hi, I'm Ruby on Rails developer with 2+ years of hands-on experience building web-sites, single page applications and API's of all kinds. Here are some highlights of my skills:
+
+Back-end:
+* Ruby 2.0-2.3.
+* Deep interest in OOP techniques for low-coupled, high-cohesion, modular code. SOLID, patterns of refactoring, clean code. Strict adherence to code style.
+* Rails 3/4/5.
+* Experience creating(via rails-api, activemodel-serialisers) and consuming API's of all kinds.
+* Experience with tons of useful gems: devise, pundit, activeadmin, simple_form, kaminari, virtus, and so on and so forth.
+* Experience creating my own gems and patching 3rd party gems.
+* Proficiency with relational databases (mostly Postgres now, although I've worked with mySQL too), understanding of database indices, ability to write complex SQL queries, solid knowledge of ActiveRecord.
+* Redis for caching.
+* Experience with TDD(RSpec) and BDD(RSpec, capybara) approaches to software development.
+* Deploying rails apps to VPS and Heroku, capistrano/mina, ansible for provisioning.
+
+Front-end:
+* HTML5/ERB/HAML/SLIM.
+* CSS3/SASS/SCSS/PostCSS.
+* BEM-like methodologies.
+* Mobile-first layouts.
+* Experience with popular front-end frameworks(Bootstrap 3/4, Bourbon+Neat, Semantic UI).
+* Javascript (both ES5 and ES6), jQuery, React+Redux+Immutable.js(my favourite front-end stack).
+* Experience with modern front-end toolchain (npm + webpack) and writing modular javascript code.
+
+Tooling:
+* git, github, pull requests, git flow.
+* JIRA, Trello for task management.
+* Slack, Skype for communication.
+* Skype or Screenhero for paired programming.
+
+Soft-skills:
+* Understanding that business goals come first.
+* Dislike for re-inventing the wheel.
+* Ability to learn new technologies fast.
+* Honesty in giving estimates.
+* Reliable and marathon-like in terms of velocity.
+
+My github account is: https://github.com/pineapplethief
+
+I can send/show samples of my code if you are interested. I'm also definitely open to test task so you could evaluate my skills and see if I'm a fit for your project.
+
+I'm looking forward to working with you,
+Aleksey.
