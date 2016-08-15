@@ -10,6 +10,7 @@ gem 'aasm'
 gem 'bcrypt', '~> 3.1.7'
 gem 'carrierwave'
 gem 'dotenv-rails'
+gem 'factory_girl_rails', require: false  # used for rake task to generate random data
 gem 'fast_blank'
 gem 'ffaker', require: false
 gem 'mini_magick'
