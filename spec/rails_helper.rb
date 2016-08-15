@@ -18,6 +18,7 @@ RSpec.configure do |config|
   config.include AbstractController::Translation
   config.include CapybaraHelpers, type: :feature
   config.include FakeDataGenerator, type: :feature
+  config.include RequestHelpers, type: :request
 
   config.infer_spec_type_from_file_location!
 

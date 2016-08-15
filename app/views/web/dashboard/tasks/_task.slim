@@ -3,6 +3,16 @@ li.list-group-item.qa-task
     .col-sm-12
       h4.qa-task-id
         = t(:task_id, id: task.id)
+        .task-actions
+          - if policy(task).edit?
+            = link_to edit_dashboard_task_path(task.id), class: 'task-action-link' do
+              span.task-action-link--text= t(:edit)
+              = icon_tag('edit')
+          - if policy(task).destroy?
+            = link_to dashboard_task_path(task.id), method: :delete, class: 'task-action-link' do
+              span.task-action-link--text= t(:delete)
+              = icon_tag('remove')
+
       = task.render_list_attribute(:created_at)
       = task.render_list_attribute(:state)
       = task.render_list_attribute(:name)

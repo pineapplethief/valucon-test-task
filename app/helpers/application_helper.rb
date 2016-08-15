@@ -7,6 +7,10 @@ module ApplicationHelper
     end
   end
 
+  def icon_tag(name)
+    content_tag(:span, nil, class: "glyphicon glyphicon-#{name}", aria: {hidden: "true"})
+  end
+
   def close_button_tag(options = {})
     options.reverse_merge!({
       type: 'button',
