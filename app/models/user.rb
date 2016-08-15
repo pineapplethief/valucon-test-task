@@ -15,7 +15,7 @@
 #
 
 class User < ApplicationRecord
-  ROLES = %w(user admin).freeze
+  ROLES = %w(guest user admin).freeze
 
   has_secure_password
 
@@ -26,18 +26,19 @@ class User < ApplicationRecord
 
   validates :role, presence: true, inclusion: {in: ROLES}
 
-  after_initialize :set_defaults
+  after_initialize :set_guest
+  before_create :set_defaults
 
   def self.roles
     ROLES
   end
 
   def self.guest
-    new
+    new(role: 'guest')
   end
 
   def guest?
-    !persisted?
+    role == 'guest'
   end
 
   def user?
@@ -54,8 +55,12 @@ class User < ApplicationRecord
 
   private
 
+  def set_guest
+    self.role = 'guest' unless role?
+  end
+
   def set_defaults
-    self.role = 'user' unless role?
+    self.role = 'user' if guest?
   end
 
 end

@@ -1,0 +1,9 @@
+= simple_form_for [:dashboard, task], html: {class: 'qa-sign-in-form'} do |f|
+  = f.input :name
+  = f.input :description
+  - if current_user.admin?
+    = f.input :user_id, as: :select,
+                        collection: User.all.map { |user| [user.to_s, user.id] },
+                        required: true,
+                        include_blank: false
+  = f.button :submit

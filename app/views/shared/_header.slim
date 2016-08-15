@@ -20,6 +20,8 @@ nav.navbar.navbar-default.navbar-fixed-top
       ul.nav.navbar-nav.navbar-right
         - if user_signed_in?
           li
+            = link_to t(:create_task), new_dashboard_task_path, class: 'qa-new-task-link'
+          li
             = link_to t(:dashboard), dashboard_root_path
           li
             = link_to t(:sign_out), user_sign_out_path, method: :delete, class: 'qa-sign-out-link'

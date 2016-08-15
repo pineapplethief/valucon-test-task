@@ -4,7 +4,7 @@ RSpec.describe 'Authentication', type: :feature do
 
   context 'when user is not signed in' do
     before do
-      User.create!(email: email, password: password)
+      user = User.create!(email: email, password: password)
 
       ensure_path new_user_sign_in_url
     end

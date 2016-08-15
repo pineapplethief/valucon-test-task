@@ -23,6 +23,7 @@ en:
   sign_in: Sign In
   sign_out: Sign Out
   all_tasks: All Tasks
+  create_task: Create New Task
   dashboard: Dashboard
 
   signed_in: You successfully signed in
@@ -30,10 +31,18 @@ en:
   wrong_email_or_password: Wrong user email or password
   not_authenticated: You must be authenticated to access this page
 
+  edit: Edit
+
   application_title: Tasks Manager App
 
   all_tasks_heading: All Tasks
   user_tasks_heading: Your Tasks
+
+  task_created: Task is successfully created
+  task_updated: Task is successfully updated
+  task_destroyed: Task is successfully destroyed
+  edit: Edit
+  delete: Delete
 
   task_id: "Task #%{id}"
 
@@ -55,3 +64,4 @@ en:
       task:
         name: Name
         user: Assigned to
+        user_id: Assigned to

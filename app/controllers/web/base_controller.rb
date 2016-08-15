@@ -14,7 +14,7 @@ module Web
     def authenticate_user!
       unless user_signed_in?
         flash[:alert] = t(:not_authenticated)
-        redirect_to new_user_sign_in_path
+        redirect_to new_user_sign_in_path, status: :unauthorized
       end
     end
 
@@ -60,11 +60,8 @@ module Web
 
       flash[:error] = t("#{policy_name}.#{exception.query}", scope: :pundit, default: :unauthorized_access)
 
-      redirect_to_back_or_root
-    end
-
-    def redirect_to_back_or_root
-      redirect_to(request.referrer || root_path)
+      redirect_path = request.referrer || root_path
+      redirect_to redirect_path, status: :forbidden
     end
 
   end
