@@ -10,7 +10,7 @@
 /tmp/
 /log/*.log
 
-/public/uploads
+/public/uploads/
 
 /.bundle
 
