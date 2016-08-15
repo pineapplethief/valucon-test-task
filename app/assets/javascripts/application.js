@@ -14,3 +14,29 @@
 //= require jquery_ujs
 //= require bootstrap/alert
 //= require_tree .
+
+$(document).ready(function() {
+  $(document.body).on('click', '.task-btn', function(event) {
+    var $btn, stateEvent, id, url;
+    if (event.target.nodeName === 'BUTTON') {
+      $btn = $(event.target);
+    } else {
+      $btn = $(event.target).parents('.task-btn');
+    }
+
+    stateEvent = $btn.attr('data-event');
+    id = parseInt($btn.attr('data-id'));
+    url = 'dashboard/tasks/' + id + '/change_state';
+    $.ajax(url, {
+      method: 'PUT',
+      dataType: 'json',
+      data: {event: stateEvent}
+    }).done(function(data) {
+      if (data.error != null) { return; }
+
+      var $parent = $btn.parents('.col-sm-12');
+      $parent.find('.task-attribute-state').children('span').text(data.status);
+    });
+  });
+
+});

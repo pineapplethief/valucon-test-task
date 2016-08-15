@@ -1,0 +1,10 @@
+= task.render_list_attribute(:created_at)
+= task.render_list_attribute(:state)
+= task.render_list_attribute(:name)
+- if current_user.admin?
+  = task.render_list_attribute(:user)
+= task.render_description
+
+.task-buttons.btn-group role="group"
+  - Task.aasm.events.map(&:name).each do |event|
+    = task.state_button(event)

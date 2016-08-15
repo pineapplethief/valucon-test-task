@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       resources :tasks do
         member do
           get :download_attachment
+          put :change_state
         end
       end
     end

@@ -8,6 +8,31 @@ class TaskPresenter < BasePresenter
     h.t("task.states.#{super}")
   end
 
+  def state_button(state_event)
+    can_transition = send(:"may_#{state_event}?")
+    button_css =
+      case state_event
+      when :start
+        'btn-primary'
+      when :finish
+        'btn-success'
+      when :reset
+        'btn-warning'
+      end
+    text = h.t("task.events.#{state_event}")
+    text_css = "task-state-link task-state-link-#{state_event}"
+
+    h.content_tag(:button, class: "task-btn btn btn-lg #{button_css}",
+                           data: {event: state_event, id: id},
+                           type: 'button') do
+      if can_transition
+        h.link_to text, '#', class: text_css
+      else
+        h.content_tag(:span, text, class: text_css)
+      end
+    end
+  end
+
   def render_description
     h.content_tag(:div, class: "task-attribute task-attribute-description") do
       h.concat h.content_tag(:strong, "#{Task.human_attribute_name(:description)}: ")

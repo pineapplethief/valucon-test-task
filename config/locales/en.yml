@@ -32,6 +32,7 @@ en:
   not_authenticated: You must be authenticated to access this page
 
   edit: Edit
+  delete_confirm: Are you sure?
 
   application_title: Tasks Manager App
 
@@ -41,6 +42,7 @@ en:
   task_created: Task is successfully created
   task_updated: Task is successfully updated
   task_destroyed: Task is successfully destroyed
+  show: View
   edit: Edit
   delete: Delete
 
@@ -55,7 +57,12 @@ en:
       new: New
       started: Started
       finished: Finished
+    events:
+      start: Start
+      reset: Reset
+      finish: Finish
 
+  download_attachment: Download attachment
   uploaded_file_not_found: File not found
 
   pundit:
